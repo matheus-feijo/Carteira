@@ -123,7 +123,6 @@ export const Login = (props) =>{
                     variant="contained"
                     disableRipple
                     style={{
-                        display: "block",
                         color: "#fff",
                         backgroundColor:"#431D74",
                         fontWeight:600

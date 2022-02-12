@@ -1,65 +1,33 @@
-import React from "react";
+import React, { Children, useState } from "react";
 import { Founder } from "../Pag404/Pag404";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import CardCripto from "./Cripto";
+import CardAcao  from "./Acao";
+import CardTesouro from "./Tesouro"
+import { Headers,NavHome,ButtonsNav,FounderHome,Card } from "../../Components/UI/StyleHome";
 
 
 export function HomePage(){
 
-    const FounderHome = styled(Founder)`
-        background-color:#D5D9DA;
-        height: 80vh;
-    `;
-
-    const Headers = styled.header`
-        background-color:#4B1A73;
-        height: 20vh;
-    `;
-
-    const Card = styled.div`
-        display: flex;
-        width: 90vh;
-        justify-content:center;
-        border-radius:60px;
-        background-color:#AEB0B0;
-        opacity:0.3;
-        height: 70vh;
-        margin-top:40px;
-
-    `;
-
-    const ButtonsNav = styled(Link)`
-        color:#fff;
-        font-family:Roboto;
-        text-decoration:none;
-        font-size:25px;
-        margin-right:200px;
-
-    `;
-
-    const NavHome = styled.nav`
-        display: flex;
-        justify-content:center;
-        position: relative;
-        top: 140px;
-        margin-left:178px;
-    `;
+    const [etapa,setEtapa] = useState();
+    const arrays = [<CardCripto />,<CardAcao />,<CardTesouro />]
 
     return(
         <div>
             <Headers>
                 <NavHome>
                     <ul style={{display:"flex",listStyleType: "none",}}>
-                        <li><ButtonsNav to={"#"}>Criptomoeda</ButtonsNav></li>
-                        <li><ButtonsNav to={"#"}>Ação</ButtonsNav></li>
-                        <li><ButtonsNav to={"#"}>Tesouro</ButtonsNav></li>
+                        <li><ButtonsNav onClick={()=>setEtapa(0)} draggable={false}>Criptomoeda</ButtonsNav></li>
+                        <li><ButtonsNav onClick={()=>setEtapa(1)} draggable={false}>Ação</ButtonsNav></li>
+                        <li><ButtonsNav onClick={()=>setEtapa(2)} draggable={false}>Tesouro</ButtonsNav></li>
                     </ul>
-                
                 </NavHome>
             </Headers>
             <FounderHome>
-                <Card></Card>
-
+                <Card>
+                    {arrays[etapa]}
+                </Card>
             </FounderHome>
         </div>
     )
