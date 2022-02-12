@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import {TextField,Button,FormControl,Input, Typography, FormHelperText} from "@material-ui/core";
+import {TextField,Button, Typography} from "@material-ui/core";
 import "./login.css";
+import { Link } from "react-router-dom";
 
 
-export const Login = () =>{
+export const Login = (props) =>{
 
     const Container = styled.div`
         background-color:#025959;
@@ -20,9 +21,10 @@ export const Login = () =>{
     const [formValues,setFormValues] = useState(initalValues);
     const [formErrors,setFormErrors] = useState({});
     const [isSubmiting,setIsSubmiting] = useState(false);
+    const [entrar,setEntrar] = useState(false);
 
     const submit = () =>{
-        
+        setEntrar(true);
     }
 
     const handleSubmit = (e) =>{
@@ -115,7 +117,9 @@ export const Login = () =>{
                     }}
                 >Esqueci minha senha</a>
 
-                <Button 
+                <Button
+                    component={Link}
+                    to={"/home"}
                     variant="contained"
                     disableRipple
                     style={{
